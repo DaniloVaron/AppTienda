@@ -1,2 +1,77 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
+/**
+ * Variables de tema personalizadas para la aplicación.
+ *
+ * PALETA DE COLORES:
+ * - Primary: Rojo/Rosa (#e94560) - Botones principales, acentos
+ * - Secondary: Azul oscuro (#16213e) - Fondos, elementos secundarios
+ * - Tertiary: Naranja (#ff6b6b) - Detalles, gradientes
+ * - Success: Verde (#4ade80) - Precios, confirmaciones
+ * - Warning: Amarillo (#ffc107) - Estrellas, alertas
+ * - Danger: Rojo (#ef4444) - Errores, acciones destructivas
+ */
+
+:root {
+  /* ===== Primary: Rojo/Rosa (color principal de la marca) ===== */
+  --ion-color-primary: #e94560;
+  --ion-color-primary-rgb: 233, 69, 96;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #cd3d54;
+  --ion-color-primary-tint: #eb5870;
+
+  /* ===== Secondary: Azul oscuro ===== */
+  --ion-color-secondary: #16213e;
+  --ion-color-secondary-rgb: 22, 33, 62;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #131d37;
+  --ion-color-secondary-tint: #2d3751;
+
+  /* ===== Tertiary: Naranja/Rosa claro ===== */
+  --ion-color-tertiary: #ff6b6b;
+  --ion-color-tertiary-rgb: 255, 107, 107;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #e05e5e;
+  --ion-color-tertiary-tint: #ff7a7a;
+
+  /* ===== Success: Verde ===== */
+  --ion-color-success: #4ade80;
+  --ion-color-success-rgb: 74, 222, 128;
+  --ion-color-success-contrast: #000000;
+  --ion-color-success-contrast-rgb: 0, 0, 0;
+  --ion-color-success-shade: #41c371;
+  --ion-color-success-tint: #5ce18d;
+
+  /* ===== Warning: Amarillo ===== */
+  --ion-color-warning: #ffc107;
+  --ion-color-warning-rgb: 255, 193, 7;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0aa06;
+  --ion-color-warning-tint: #ffc720;
+
+  /* ===== Danger: Rojo ===== */
+  --ion-color-danger: #ef4444;
+  --ion-color-danger-rgb: 239, 68, 68;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #d23c3c;
+  --ion-color-danger-tint: #f15757;
+
+  /* ===== Medium: Gris ===== */
+  --ion-color-medium: #92949c;
+  --ion-color-medium-rgb: 146, 148, 156;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #808289;
+  --ion-color-medium-tint: #9d9fa6;
+
+  /* ===== Light ===== */
+  --ion-color-light: #f4f5f8;
+  --ion-color-light-rgb: 244, 245, 248;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f5f6f9;
+}
