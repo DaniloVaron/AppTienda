@@ -1,0 +1,166 @@
+/**
+ * login.page.scss
+ * ---------------
+ * Estilos para la página de Login/Registro.
+ *
+ * Usa un diseño con gradiente de fondo, formulario centrado
+ * con efecto glassmorphism (fondo semi-transparente con blur).
+ */
+
+/* Fondo con gradiente */
+.login-content {
+  --background: linear-gradient(160deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+/* Contenedor principal centrado verticalmente */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 24px;
+}
+
+/* Sección del logo */
+.logo-section {
+  text-align: center;
+  margin-bottom: 40px;
+
+  .logo-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 8px 32px rgba(233, 69, 96, 0.3);
+
+    ion-icon {
+      font-size: 40px;
+      color: white;
+    }
+  }
+
+  h1 {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    letter-spacing: 1px;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+/* Formulario con glassmorphism */
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 32px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Campo de formulario */
+.form-field {
+  margin-bottom: 20px;
+
+  ion-text {
+    display: block;
+    padding-left: 16px;
+    margin-top: 4px;
+
+    small {
+      font-size: 12px;
+    }
+  }
+}
+
+/* Estilo de los items de input */
+.input-item {
+  --background: rgba(255, 255, 255, 0.06);
+  --border-radius: 12px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 52px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: border-color 0.3s ease;
+
+  &:focus-within {
+    border-color: #e94560;
+  }
+
+  ion-input {
+    --color: white;
+    --placeholder-color: rgba(255, 255, 255, 0.4);
+    font-size: 15px;
+  }
+}
+
+/* Icono dentro del input */
+.input-icon {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+/* Botón de mostrar/ocultar contraseña */
+.toggle-password {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Botón de submit */
+.submit-btn {
+  margin-top: 24px;
+  --background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+  --border-radius: 12px;
+  --box-shadow: 0 4px 16px rgba(233, 69, 96, 0.4);
+  height: 52px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: none;
+
+  &:hover {
+    --box-shadow: 0 6px 24px rgba(233, 69, 96, 0.5);
+  }
+}
+
+/* Sección de alternar modo */
+.toggle-mode {
+  margin-top: 24px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  ion-text {
+    font-size: 14px;
+  }
+
+  ion-button {
+    --color: #e94560;
+    font-weight: 600;
+    text-transform: none;
+  }
+}

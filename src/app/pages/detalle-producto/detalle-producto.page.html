@@ -1,13 +1,103 @@
+<!--
+  Template detalle de un producto
+-->
+
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>detalle-producto</ion-title>
+    <!-- Botón de retroceso nativo -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/productos" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">detalle-producto</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <!-- Estado: Cargando -->
+  <div *ngIf="cargando" class="loading-container">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+  </div>
+
+  <!-- Contenido del producto -->
+  <div *ngIf="producto && !cargando" class="detalle-container">
+
+    <!-- Imagen del producto -->
+    <div class="imagen-hero">
+      <img [src]="producto.image" [alt]="producto.title" />
+    </div>
+
+    <!-- Información del producto -->
+    <div class="info-section">
+
+      <!-- Categoría -->
+      <ion-chip class="categoria-chip">
+        <ion-label>{{ traducirCategoria(producto.category) }}</ion-label>
+      </ion-chip>
+
+      <!-- Título -->
+      <h1 class="producto-titulo">{{ producto.title }}</h1>
+
+      <!-- Rating -->
+      <div class="rating-row">
+        <div class="estrellas">
+          <ion-icon
+            *ngFor="let estrella of getEstrellas(producto.rating.rate)"
+            [name]="estrella"
+            class="star-icon">
+          </ion-icon>
+        </div>
+        <span class="rating-text">
+          {{ producto.rating.rate }} ({{ producto.rating.count }} reseñas)
+        </span>
+      </div>
+
+      <!-- Precio -->
+      <div class="precio-section">
+        <span class="precio-label">Precio</span>
+        <span class="precio-valor">${{ producto.price.toFixed(2) }}</span>
+      </div>
+
+      <!-- Descripción -->
+      <div class="descripcion-section">
+        <h3>Descripción</h3>
+        <p>{{ producto.description }}</p>
+      </div>
+
+      <!-- Selector de cantidad -->
+      <div class="cantidad-section">
+        <span class="cantidad-label">Cantidad</span>
+        <div class="cantidad-controls">
+          <ion-button
+            fill="outline"
+            size="small"
+            (click)="decrementar()"
+            [disabled]="cantidad <= 1"
+            class="qty-btn">
+            <ion-icon name="remove-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+          <span class="cantidad-valor">{{ cantidad }}</span>
+          <ion-button
+            fill="outline"
+            size="small"
+            (click)="incrementar()"
+            [disabled]="cantidad >= 10"
+            class="qty-btn">
+            <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <!-- Botón de agregar al carrito -->
+      <ion-button
+        expand="block"
+        class="agregar-btn"
+        (click)="agregarAlCarrito()">
+        <ion-icon name="cart-outline" slot="start"></ion-icon>
+        Agregar al carrito — ${{ (producto.price * cantidad).toFixed(2) }}
+      </ion-button>
+
+    </div>
+  </div>
+
 </ion-content>

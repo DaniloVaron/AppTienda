@@ -1,3 +1,7 @@
+<!--
+  Template de la página de perfil del usuario.
+-->
+
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Mi Perfil</ion-title>
@@ -5,9 +9,93 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Mi Perfil</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <div class="perfil-container" *ngIf="usuario">
+
+    <!-- Sección del avatar y nombre -->
+    <div class="avatar-section">
+      <div class="avatar-circle">
+        <span>{{ getInicial() }}</span>
+      </div>
+      <h2 class="nombre-usuario">{{ usuario.nombre }}</h2>
+      <p class="email-usuario">{{ usuario.email }}</p>
+    </div>
+
+    <!-- Estadísticas rápidas -->
+    <div class="stats-container">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <div class="stat-card">
+              <ion-icon name="cart-outline" class="stat-icon"></ion-icon>
+              <span class="stat-valor">{{ cantidadItems }}</span>
+              <span class="stat-label">En carrito</span>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="stat-card">
+              <ion-icon name="wallet-outline" class="stat-icon"></ion-icon>
+              <span class="stat-valor">${{ totalCarrito.toFixed(2) }}</span>
+              <span class="stat-label">Total</span>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <!-- Lista de información -->
+    <div class="info-section">
+      <ion-list lines="none" class="info-list">
+
+        <ion-item class="info-item">
+          <ion-icon name="person-outline" slot="start" class="info-icon"></ion-icon>
+          <ion-label>
+            <h3>Nombre</h3>
+            <p>{{ usuario.nombre }}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item class="info-item">
+          <ion-icon name="mail-outline" slot="start" class="info-icon"></ion-icon>
+          <ion-label>
+            <h3>Correo electrónico</h3>
+            <p>{{ usuario.email }}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item class="info-item">
+          <ion-icon name="shield-checkmark-outline" slot="start" class="info-icon"></ion-icon>
+          <ion-label>
+            <h3>Estado de la cuenta</h3>
+            <p>Activa</p>
+          </ion-label>
+          <ion-note slot="end" class="estado-badge">Verificada</ion-note>
+        </ion-item>
+
+        <ion-item class="info-item">
+          <ion-icon name="information-circle-outline" slot="start" class="info-icon"></ion-icon>
+          <ion-label>
+            <h3>Versión de la app</h3>
+            <p>TechStore v1.0.0</p>
+          </ion-label>
+        </ion-item>
+
+      </ion-list>
+    </div>
+
+    <!-- Botón de cerrar sesión -->
+    <div class="logout-section">
+      <ion-button
+        expand="block"
+        fill="outline"
+        color="danger"
+        class="logout-btn"
+        (click)="cerrarSesion()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        Cerrar Sesión
+      </ion-button>
+    </div>
+
+  </div>
+
 </ion-content>
