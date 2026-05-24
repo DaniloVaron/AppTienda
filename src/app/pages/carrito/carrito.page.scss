@@ -1,0 +1,199 @@
+/**
+ * carrito.page.scss
+ * Estilos para la página del carrito de compras.
+ */
+
+/* Botón vaciar carrito */
+.vaciar-btn {
+  --color: #e94560;
+  margin-right: 8px;
+}
+
+/* Estado vacío del carrito */
+.estado-vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70%;
+  padding: 24px;
+  text-align: center;
+
+  .empty-icon-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+
+    ion-icon {
+      font-size: 48px;
+      color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ion-text-color, white);
+    margin: 0 0 8px;
+  }
+
+  p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+  }
+}
+
+/* Contenedor del carrito */
+.carrito-container {
+  padding-bottom: 24px;
+}
+
+/* Lista de items */
+.items-list {
+  background: transparent;
+  padding: 8px 12px;
+}
+
+/* Item del carrito */
+.carrito-item {
+  --background: var(--ion-card-background, #1e1e2f);
+  --border-radius: 14px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --inner-padding-end: 8px;
+  margin-bottom: 10px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* Thumbnail del producto */
+.item-thumbnail {
+  --size: 70px;
+  --border-radius: 10px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 12px;
+
+  img {
+    object-fit: contain;
+    padding: 8px;
+  }
+}
+
+/* Título del item */
+.item-titulo {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ion-text-color, white) !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
+  white-space: normal;
+}
+
+/* Precio unitario */
+.item-precio-unitario {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  margin-bottom: 8px;
+}
+
+/* Controles de cantidad */
+.cantidad-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  .qty-btn {
+    --color: white;
+    --padding-start: 4px;
+    --padding-end: 4px;
+    width: 28px;
+    height: 28px;
+    margin: 0;
+
+    ion-icon {
+      font-size: 16px;
+    }
+  }
+
+  .cantidad-valor {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ion-text-color, white);
+    min-width: 24px;
+    text-align: center;
+  }
+}
+
+/* Subtotal del item */
+.item-subtotal {
+  font-size: 16px;
+  font-weight: 700;
+  color: #4ade80;
+}
+
+/* Sección de resumen */
+.resumen-section {
+  margin: 16px 12px 0;
+  padding: 20px;
+  background: var(--ion-card-background, #1e1e2f);
+  border-radius: 16px;
+}
+
+/* Filas del resumen */
+.resumen-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Envío gratis */
+.envio-gratis {
+  color: #4ade80;
+  font-weight: 500;
+}
+
+/* Divisor */
+.resumen-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 12px 0;
+}
+
+/* Fila del total */
+.total-row {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ion-text-color, white);
+  margin-bottom: 20px;
+}
+
+.total-valor {
+  font-size: 24px;
+  color: #4ade80;
+}
+
+/* Botón de checkout */
+.checkout-btn {
+  --background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+  --border-radius: 14px;
+  --box-shadow: 0 4px 20px rgba(233, 69, 96, 0.4);
+  height: 54px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: none;
+  margin-top: 8px;
+}

@@ -1,0 +1,112 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <strong>Productos</strong>
+    </ion-title>
+  </ion-toolbar>
+
+  <!-- Barra de búsqueda -->
+  <ion-toolbar>
+    <ion-searchbar placeholder="Buscar productos..." [debounce]="300" (ionInput)="onBusqueda($event)" animated="true"
+      show-clear-button="focus">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- Pull to refresh: arrastrar hacia abajo para recargar -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Filtro de categorías con segmentos horizontales -->
+  <div class="categorias-container" *ngIf="categorias.length > 0">
+    <ion-segment [value]="categoriaSeleccionada" (ionChange)="onCategoriaChange($event)" [scrollable]="true">
+      <!-- Opción "Todos" -->
+      <ion-segment-button value="all">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+      <!-- Una opción por cada categoría de la API -->
+      <ion-segment-button *ngFor="let cat of categorias" [value]="cat">
+        <ion-label>{{ traducirCategoria(cat) }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- ESTADO: Cargando (Skeleton) -->
+  <ion-grid *ngIf="cargando" class="productos-grid">
+    <ion-row>
+      <ion-col size="6" *ngFor="let i of [1,2,3,4,5,6]">
+        <ion-card class="producto-card skeleton-card">
+          <ion-skeleton-text [animated]="true" style="width: 100%; height: 150px;"></ion-skeleton-text>
+          <ion-card-content>
+            <ion-skeleton-text [animated]="true" style="width: 80%; height: 16px;"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 50%; height: 14px; margin-top: 8px;"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 30%; height: 20px; margin-top: 8px;"></ion-skeleton-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- ESTADO: Error -->
+  <div *ngIf="error && !cargando" class="estado-vacio">
+    <ion-icon name="refresh-outline" class="empty-icon"></ion-icon>
+    <h2>Error al cargar</h2>
+    <p>No pudimos conectar con el servidor</p>
+    <ion-button (click)="cargarDatos()" fill="outline">
+      Reintentar
+    </ion-button>
+  </div>
+
+  <!-- ESTADO: Sin resultados -->
+  <div *ngIf="!cargando && !error && productosFiltrados.length === 0" class="estado-vacio">
+    <ion-icon name="search-outline" class="empty-icon"></ion-icon>
+    <h2>Sin resultados</h2>
+    <p>No encontramos productos con esa búsqueda</p>
+  </div>
+
+  <!-- ESTADO: Lista de productos -->
+  <ion-grid *ngIf="!cargando && !error && productosFiltrados.length > 0" class="productos-grid">
+    <ion-row>
+      <ion-col size="6" *ngFor="let producto of productosFiltrados">
+
+        <!-- Card de producto (click navega al detalle) -->
+        <ion-card class="producto-card" (click)="verDetalle(producto)" button>
+          <!-- Imagen del producto -->
+          <div class="imagen-container">
+            <img [src]="producto.image" [alt]="producto.title" loading="lazy" />
+          </div>
+
+          <ion-card-content>
+            <!-- Categoría -->
+            <ion-badge class="categoria-badge">
+              {{ traducirCategoria(producto.category) }}
+            </ion-badge>
+
+            <!-- Título (cortado a 2 líneas) -->
+            <h3 class="producto-titulo">{{ producto.title }}</h3>
+
+            <!-- Rating con estrellas -->
+            <div class="rating-container">
+              <ion-icon *ngFor="let estrella of getEstrellas(producto.rating.rate)" [name]="estrella" class="star-icon">
+              </ion-icon>
+              <span class="rating-count">({{ producto.rating.count }})</span>
+            </div>
+
+            <!-- Precio y botón de agregar -->
+            <div class="precio-container">
+              <span class="precio">${{ producto.price.toFixed(2) }}</span>
+              <ion-button fill="clear" size="small" class="add-btn" (click)="agregarAlCarrito($event, producto)">
+                <ion-icon name="cart-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
