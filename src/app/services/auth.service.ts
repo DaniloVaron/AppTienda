@@ -8,23 +8,18 @@ import { Usuario } from '../models/usuario.model';
 
 /** Claves de almacenamiento (constantes para evitar errores de tipeo) */
 const STORAGE_KEYS = {
-  SESION: 'usuario_sesion',      // Sesión activa del usuario
-  USUARIOS: 'usuarios_registrados' // Lista de todos los usuarios registrados
+  SESION: 'usuario_sesion', // Sesión activa del usuario
+  USUARIOS: 'usuarios_registrados', // Lista de todos los usuarios registrados
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   /**
-   * BehaviorSubject que mantiene el estado del usuario actual.
+   * BehaviorSubject mantiene el estado del usuario actual.
    */
   private usuarioSubject = new BehaviorSubject<Usuario | null>(null);
-
-  /**
-   * Observable público para que los componentes se suscriban.
-   */
   usuario$ = this.usuarioSubject.asObservable();
 
   constructor(private storageService: StorageService) {
@@ -45,9 +40,14 @@ export class AuthService {
   /**
    * Registra un nuevo usuario en el sistema.
    */
-  async registrar(nombre: string, email: string, password: string): Promise<boolean> {
+  async registrar(
+    nombre: string,
+    email: string,
+    password: string,
+  ): Promise<boolean> {
     // Obtenemos los usuarios registrados (o array vacío si es el primero)
-    const usuarios = await this.storageService.get(STORAGE_KEYS.USUARIOS) || [];
+    const usuarios =
+      (await this.storageService.get(STORAGE_KEYS.USUARIOS)) || [];
 
     // Verificamos que el email no esté ya registrado
     const existe = usuarios.find((u: any) => u.email === email);
@@ -59,7 +59,7 @@ export class AuthService {
     usuarios.push({
       nombre,
       email,
-      password // En producción: hash(password)
+      password,
     });
 
     // Guardamos la lista actualizada
@@ -72,11 +72,12 @@ export class AuthService {
    * Inicia sesión con las credenciales proporcionadas.
    */
   async login(email: string, password: string): Promise<Usuario> {
-    const usuarios = await this.storageService.get(STORAGE_KEYS.USUARIOS) || [];
+    const usuarios =
+      (await this.storageService.get(STORAGE_KEYS.USUARIOS)) || [];
 
     // Buscamos el usuario con ese email y contraseña
     const encontrado = usuarios.find(
-      (u: any) => u.email === email && u.password === password
+      (u: any) => u.email === email && u.password === password,
     );
 
     if (!encontrado) {
@@ -87,8 +88,7 @@ export class AuthService {
     const usuario: Usuario = {
       email: encontrado.email,
       nombre: encontrado.nombre,
-      // Token simulado: en producción vendría del servidor (JWT)
-      token: this.generarToken()
+      token: this.generarToken(),
     };
 
     // Guardamos la sesión para persistencia
@@ -110,10 +110,6 @@ export class AuthService {
 
   /**
    * Verifica si hay un usuario autenticado actualmente.
-   *
-   * Uso principal: AuthGuard para proteger rutas.
-   *
-   * @returns true si hay sesión activa
    */
   isAuthenticated(): boolean {
     return this.usuarioSubject.value !== null;
@@ -121,8 +117,6 @@ export class AuthService {
 
   /**
    * Obtiene el usuario actual de forma síncrona.
-   *
-   * @returns El usuario actual o null
    */
   getUsuarioActual(): Usuario | null {
     return this.usuarioSubject.value;

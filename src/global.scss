@@ -48,7 +48,7 @@
 }
 
 /**
- * Ionic Loading: personalización de carga.
+ * Personalización de carga.
  */
 ion-loading {
   --background: rgba(26, 26, 46, 0.95);
@@ -59,4 +59,55 @@ ion-loading {
     border-radius: 16px;
     padding: 24px;
   }
+}
+
+/**
+ * Personalización de las alertas.
+ */
+ion-alert {
+  --background: #1a1a2e;
+  --color: white;
+
+  .alert-title {
+    color: white !important;
+    font-weight: 600;
+  }
+
+  .alert-message {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  .alert-button {
+    color: #e94560 !important;
+  }
+}
+
+/**
+ * Personalización de los mensajes toast.
+ */
+ion-toast {
+  --border-radius: 12px;
+
+  &::part(message) {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+/**
+ * Animación de entrada para las cards de productos.
+ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ion-card {
+  animation: fadeInUp 0.4s ease-out;
 }

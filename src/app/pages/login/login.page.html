@@ -12,8 +12,7 @@
       <div class="logo-circle">
         <ion-icon name="storefront-outline"></ion-icon>
       </div>
-      <h1>TechStore</h1>
-      <p>Tu tienda favorita</p>
+      <h1>Tu tienda favorita</h1>
     </div>
 
     <!-- Formulario de login/registro -->
@@ -23,15 +22,12 @@
       <div *ngIf="modoRegistro" class="form-field">
         <ion-item lines="none" class="input-item">
           <ion-icon name="person-add-outline" slot="start" class="input-icon"></ion-icon>
-          <ion-input
-            formControlName="nombre"
-            type="text"
-            placeholder="Nombre completo"
-            autocapitalize="words">
+          <ion-input formControlName="nombre" type="text" placeholder="Nombre completo" autocapitalize="words">
           </ion-input>
         </ion-item>
         <!-- Mensaje de error para nombre -->
-        <ion-text color="danger" *ngIf="modoRegistro && formulario.get('nombre')?.touched && !formulario.get('nombre')?.value">
+        <ion-text color="danger"
+          *ngIf="modoRegistro && formulario.get('nombre')?.touched && !formulario.get('nombre')?.value">
           <small>El nombre es obligatorio</small>
         </ion-text>
       </div>
@@ -40,16 +36,13 @@
       <div class="form-field">
         <ion-item lines="none" class="input-item">
           <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
-          <ion-input
-            formControlName="email"
-            type="email"
-            placeholder="Correo electrónico"
-            autocapitalize="off"
+          <ion-input formControlName="email" type="email" placeholder="Correo electrónico" autocapitalize="off"
             inputmode="email">
           </ion-input>
         </ion-item>
         <!-- Mensajes de error para email -->
-        <ion-text color="danger" *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['required']">
+        <ion-text color="danger"
+          *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['required']">
           <small>El correo es obligatorio</small>
         </ion-text>
         <ion-text color="danger" *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['email']">
@@ -61,33 +54,25 @@
       <div class="form-field">
         <ion-item lines="none" class="input-item">
           <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
-          <ion-input
-            formControlName="password"
-            [type]="mostrarPassword ? 'text' : 'password'"
-            placeholder="Contraseña">
+          <ion-input formControlName="password" [type]="mostrarPassword ? 'text' : 'password'" placeholder="Contraseña">
           </ion-input>
-          <ion-icon
-            [name]="mostrarPassword ? 'eye-off-outline' : 'eye-outline'"
-            slot="end"
-            class="toggle-password"
+          <ion-icon [name]="mostrarPassword ? 'eye-off-outline' : 'eye-outline'" slot="end" class="toggle-password"
             (click)="togglePasswordVisibility()">
           </ion-icon>
         </ion-item>
         <!-- Mensajes de error para contraseña -->
-        <ion-text color="danger" *ngIf="formulario.get('password')?.touched && formulario.get('password')?.errors?.['required']">
+        <ion-text color="danger"
+          *ngIf="formulario.get('password')?.touched && formulario.get('password')?.errors?.['required']">
           <small>La contraseña es obligatoria</small>
         </ion-text>
-        <ion-text color="danger" *ngIf="formulario.get('password')?.touched && formulario.get('password')?.errors?.['minlength']">
+        <ion-text color="danger"
+          *ngIf="formulario.get('password')?.touched && formulario.get('password')?.errors?.['minlength']">
           <small>Mínimo 6 caracteres</small>
         </ion-text>
       </div>
 
       <!-- Botón de submit -->
-      <ion-button
-        type="submit"
-        expand="block"
-        class="submit-btn"
-        [disabled]="cargando">
+      <ion-button type="submit" expand="block" class="submit-btn" [disabled]="cargando">
         <ion-icon [name]="modoRegistro ? 'person-add-outline' : 'log-in-outline'" slot="start"></ion-icon>
         {{ modoRegistro ? 'Crear cuenta' : 'Iniciar sesión' }}
       </ion-button>

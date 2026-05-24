@@ -1,34 +1,22 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
     // Ruta de tabs: protegida, requiere autenticación
     path: 'tabs',
+    canActivate: [authGuard], // Verifica la sesión antes de dar acceso
     loadChildren: () =>
       import('./pages/tabs/tabs.routes').then((m) => m.tabsRoutes),
     // loadChildren carga las rutas hijas definidas en tabs.routes.ts
   },
   {
-    path: 'carrito',
-    loadComponent: () =>
-      import('./pages/carrito/carrito.page').then((m) => m.CarritoPage),
-  },
-  {
-    path: 'productos',
-    loadComponent: () =>
-      import('./pages/productos/productos.page').then((m) => m.ProductosPage),
-  },
-  {
     path: 'detalle-producto/:id',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/detalle-producto/detalle-producto.page').then(
         (m) => m.DetalleProductoPage,
       ),
-  },
-  {
-    path: 'perfil',
-    loadComponent: () =>
-      import('./pages/perfil/perfil.page').then((m) => m.PerfilPage),
   },
   {
     path: 'login',
@@ -38,12 +26,12 @@ export const routes: Routes = [
   {
     // Ruta por defecto: redirige al login
     path: '',
-    redirectTo: 'productos',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
     // Cualquier ruta no definida: redirige al login
     path: '**',
-    redirectTo: 'productos',
+    redirectTo: 'login',
   },
 ];

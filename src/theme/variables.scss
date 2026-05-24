@@ -75,3 +75,59 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+/**
+ * MODO OSCURO
+ * -----------
+ * Las variables de body definen los colores de fondo y texto globales.
+ */
+body {
+  /* Fondo principal oscuro */
+  --ion-background-color: #0f0f1a;
+  --ion-background-color-rgb: 15, 15, 26;
+
+  /* Color de texto principal */
+  --ion-text-color: #f0f0f5;
+  --ion-text-color-rgb: 240, 240, 245;
+
+  /* Fondo de las cards y items */
+  --ion-card-background: #1a1a2e;
+
+  /* Fondo del toolbar/header */
+  --ion-toolbar-background: #1a1a2e;
+  --ion-toolbar-color: #f0f0f5;
+
+  /* Fondo de los items */
+  --ion-item-background: #1a1a2e;
+
+  /* Fondo de la tab bar */
+  --ion-tab-bar-background: #1a1a2e;
+  --ion-tab-bar-color: rgba(240, 240, 245, 0.5);
+  --ion-tab-bar-color-selected: #e94560;
+}
+
+/**
+ * Ajustes específicos para iOS.
+ */
+.ios body {
+  --ion-background-color: #0f0f1a;
+  --ion-background-color-rgb: 15, 15, 26;
+  --ion-text-color: #f0f0f5;
+  --ion-text-color-rgb: 240, 240, 245;
+  --ion-toolbar-background: #1a1a2e;
+  --ion-card-background: #1a1a2e;
+  --ion-item-background: #1a1a2e;
+}
+
+/**
+ * Ajustes específicos para Android.
+ */
+.md body {
+  --ion-background-color: #0f0f1a;
+  --ion-background-color-rgb: 15, 15, 26;
+  --ion-text-color: #f0f0f5;
+  --ion-text-color-rgb: 240, 240, 245;
+  --ion-toolbar-background: #1a1a2e;
+  --ion-card-background: #1a1a2e;
+  --ion-item-background: #1a1a2e;
+}
